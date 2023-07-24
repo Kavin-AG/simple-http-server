@@ -5,6 +5,7 @@ import base64
 import urllib.parse
 import html
 import sys
+import socket
 
 IP_ADDRESS = '0.0.0.0'  # Listen on all available network interfaces
 PORT = 8000
@@ -15,6 +16,22 @@ BASE_DIRECTORY = os.path.join(os.getcwd(), 'my_folder')
 # Authentication credentials (for demonstration purposes only).
 USERNAME = 'admin'
 PASSWORD = 'password'
+
+# getting system ip address
+def get_ip_address():
+    try:
+        # Get the local host name.
+        host_name = socket.gethostname()
+
+        # Get the IP address corresponding to the local host name.
+        ip_address = socket.gethostbyname(host_name)
+
+        return ip_address
+    except socket.error as e:
+        print(f"Error while getting the IP address: {e}")
+        return None
+    
+ip = get_ip_address()
 
 # Custom request handler class with authentication and alphabetical sorting.
 class CustomHandler(SimpleHTTPRequestHandler):
@@ -132,7 +149,7 @@ def run_server():
     # Bind the server to the IP address and port.
     server = HTTPServer((IP_ADDRESS, PORT), handler)
 
-    print(f"Serving at {IP_ADDRESS}:{PORT}")
+    print(f"Serving at http://{ip}:{PORT}/")
     try:
         # Start the server, which will keep running until interrupted.
         server.serve_forever()

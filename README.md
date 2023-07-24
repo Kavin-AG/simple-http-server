@@ -27,7 +27,7 @@ Follow these instructions to set up and run the HTTP server on your local machin
 
 ### Usage
 
-1. Place the files you want to serve in a folder named `my_folder` inside the cloned repository.
+1. save the file in directory you want to share and run it from there.
 
 2. Open the `server.py` file and modify the `USERNAME` and `PASSWORD` variables to set your desired authentication credentials. **Note: For demonstration purposes only; do not use sensitive credentials in this file.**
 
